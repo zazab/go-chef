@@ -45,7 +45,7 @@ func (c *Chef) CreateNode(node Node) error {
 func (c *Chef) DeleteNode(name string) error {
 	responce, err := c.Delete("nodes/"+name, nil)
 	if err != nil {
-		return err
+		return errors.New("chef-golang: " + err.Error())
 	}
 
 	body, err := ioutil.ReadAll(responce.Body)

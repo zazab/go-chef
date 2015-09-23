@@ -49,7 +49,7 @@ func (c *Chef) CreateClient(name string) (string, error) {
 func (c *Chef) DeleteClient(name string) error {
 	responce, err := c.Delete("clients/"+name, nil)
 	if err != nil {
-		return err
+		return errors.New("chef-golang: " + err.Error())
 	}
 
 	body, err := ioutil.ReadAll(responce.Body)
