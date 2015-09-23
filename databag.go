@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 
 	"git.rn/devops/go-rpc.git"
-	"git.rn/devops/zhash.git"
+	"github.com/zazab/zhash"
 )
 
 type DataBagItem struct {

@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 
 	"git.rn/devops/go-rpc.git"
-	"git.rn/devops/zhash.git"
+	"github.com/zazab/zhash"
 )
 
 func NewEnvironment(name, description string, cookbookVersions map[string]string, attributes zhash.Hash) Environment {

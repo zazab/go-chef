@@ -4,7 +4,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	"git.rn/devops/zhash.git"
+	"github.com/zazab/zhash"
 )
 
 func readFile(fn string) (string, error) {
