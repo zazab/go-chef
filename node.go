@@ -1,12 +1,12 @@
 package chef
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
 	"io/ioutil"
 
-	"git.rn/devops/go-rpc.git"
 	"github.com/zazab/zhash"
 )
 
@@ -18,12 +18,14 @@ type Node struct {
 }
 
 func (c *Chef) CreateNode(node Node) error {
-	pl, err := rpc.MarshalToJsonReader(node)
+	payload := bytes.NewBuffer(nil)
+	encoder := json.NewEncoder(payload)
+	err := encoder.Encode(node)
 	if err != nil {
 		return err
 	}
 
-	responce, err := c.Post("nodes", nil, pl)
+	responce, err := c.Post("nodes", nil, payload)
 	if err != nil {
 		return err
 	}

@@ -1,12 +1,12 @@
 package chef
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
 	"io/ioutil"
 
-	"git.rn/devops/go-rpc.git"
 	"github.com/zazab/zhash"
 )
 
@@ -39,7 +39,9 @@ func (e Environment) String() string {
 }
 
 func (c *Chef) CreateEnvironment(env Environment) error {
-	payload, err := rpc.MarshalToJsonReader(env)
+	payload := bytes.NewBuffer(nil)
+	encoder := json.NewEncoder(payload)
+	err := encoder.Encode(env)
 	if err != nil {
 		return err
 	}

@@ -1,12 +1,12 @@
 package chef
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
 	"io/ioutil"
 
-	"git.rn/devops/go-rpc.git"
 	"github.com/zazab/zhash"
 )
 
@@ -79,7 +79,9 @@ func (c *Chef) GetDatabagItem(databag, item string) (DataBagItem, error) {
 
 func (c *Chef) CreateDatabag(databag string) error {
 	data := map[string]string{"name": databag}
-	payload, err := rpc.MarshalToJsonReader(data)
+	payload := bytes.NewBuffer(nil)
+	encoder := json.NewEncoder(payload)
+	err := encoder.Encode(data)
 	if err != nil {
 		return err
 	}
@@ -105,8 +107,9 @@ func (c *Chef) CreateDatabag(databag string) error {
 }
 
 func (c *Chef) CreateDatabagItem(databag, item string, value zhash.Hash) error {
-	payload, err := rpc.MarshalToJsonReader(
-		DataBagItem{Id: item, Data: value})
+	payload := bytes.NewBuffer(nil)
+	encoder := json.NewEncoder(payload)
+	err := encoder.Encode(DataBagItem{Id: item, Data: value})
 	if err != nil {
 		return err
 	}

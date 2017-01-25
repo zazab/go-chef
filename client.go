@@ -1,12 +1,12 @@
 package chef
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
 	"io/ioutil"
 
-	"git.rn/devops/go-rpc.git"
 	"github.com/zazab/zhash"
 )
 
@@ -18,12 +18,14 @@ type Client struct {
 }
 
 func (c *Chef) CreateClient(name string) (string, error) {
-	pl, err := rpc.MarshalToJsonReader(map[string]string{"name": name})
+	payload := bytes.NewBuffer(nil)
+	encoder := json.NewEncoder(payload)
+	err := encoder.Encode(map[string]string{"name": name})
 	if err != nil {
 		return "", err
 	}
 
-	responce, err := c.Post("clients", nil, pl)
+	responce, err := c.Post("clients", nil, payload)
 	if err != nil {
 		return "", err
 	}
