@@ -56,10 +56,10 @@ func (c *Chef) DeleteNode(name string) error {
 
 	switch responce.StatusCode {
 	case 200:
-		c.log.Debug("Node %s deleted", name)
+		c.log.Debugf("Node %s deleted", name)
 		return nil
 	case 404:
-		c.log.Notice("Node %s not found", name)
+		c.log.Noticef("Node %s not found", name)
 		return nil
 	default:
 		errorMessage := getErrorMessage(responceHash)

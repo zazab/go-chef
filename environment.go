@@ -79,10 +79,10 @@ func (c *Chef) DeleteEnvironment(name string) error {
 
 	switch responce.StatusCode {
 	case 200:
-		c.log.Debug("Environment %s deleted", name)
+		c.log.Debugf("Environment %s deleted", name)
 		return nil
 	case 404:
-		c.log.Notice("Environment %s not found", name)
+		c.log.Noticef("Environment %s not found", name)
 		return nil
 	default:
 		errorMessage := getErrorMessage(responceHash)

@@ -49,14 +49,14 @@ func (c *Chef) GetDatabagItem(databag, item string) (DataBagItem, error) {
 	if err != nil {
 		return DataBagItem{}, err
 	}
-	c.log.Debug("Databag item body: %s", body)
+	c.log.Debugf("Databag item body: %s", body)
 	data := DataBagItem{}
 	err = json.Unmarshal(body, &data)
 	if err != nil {
 		return DataBagItem{}, err
 	}
 
-	c.log.Debug("Databag=%[1]#v\nString=%[1]s", data)
+	c.log.Debugf("Databag=%[1]#v\nString=%[1]s", data)
 	switch responce.StatusCode {
 	case 200:
 		return data, nil
@@ -149,10 +149,10 @@ func (c *Chef) DeleteDatabag(databag string) error {
 
 	switch responce.StatusCode {
 	case 200:
-		c.log.Debug("Databag %s deleted", databag)
+		c.log.Debugf("Databag %s deleted", databag)
 		return nil
 	case 404:
-		c.log.Notice("Databag %s not found", databag)
+		c.log.Noticef("Databag %s not found", databag)
 		return nil
 	default:
 		errorMessage := getErrorMessage(responceHash)
@@ -173,10 +173,10 @@ func (c *Chef) DeleteDatabagItem(databag, item string) error {
 
 	switch responce.StatusCode {
 	case 200:
-		c.log.Debug("Databag item %s/%s deleted", databag, item)
+		c.log.Debugf("Databag item %s/%s deleted", databag, item)
 		return nil
 	case 404:
-		c.log.Notice("Databag item %s/%s not found", databag, item)
+		c.log.Noticef("Databag item %s/%s not found", databag, item)
 		return nil
 	default:
 		errorMessage := getErrorMessage(responceHash)

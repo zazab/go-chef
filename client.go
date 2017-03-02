@@ -60,10 +60,10 @@ func (c *Chef) DeleteClient(name string) error {
 
 	switch responce.StatusCode {
 	case 200:
-		c.log.Debug("Client %s deleted", name)
+		c.log.Debugf("Client %s deleted", name)
 		return nil
 	case 404:
-		c.log.Notice("Client %s not found", name)
+		c.log.Noticef("Client %s not found", name)
 		return nil
 	default:
 		errorMessage := getErrorMessage(responceHash)
