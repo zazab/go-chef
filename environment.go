@@ -46,7 +46,7 @@ func (c *Chef) CreateEnvironment(env Environment) error {
 		return err
 	}
 
-	responce, err := c.Post("environments", nil, payload)
+	responce, err := c.Post("environments", "application/json", nil, payload)
 	if err != nil {
 		return err
 	}

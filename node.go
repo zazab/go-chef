@@ -25,7 +25,7 @@ func (c *Chef) CreateNode(node Node) error {
 		return err
 	}
 
-	responce, err := c.Post("nodes", nil, payload)
+	responce, err := c.Post("nodes", "application/json", nil, payload)
 	if err != nil {
 		return err
 	}

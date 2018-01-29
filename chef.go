@@ -2,7 +2,7 @@ package chef
 
 import (
 	"github.com/op/go-logging"
-	"github.com/zazab/chef-golang"
+	"github.com/marpaia/chef-golang"
 )
 
 // Needed for defining functions on chef.Chef struct

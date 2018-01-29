@@ -86,7 +86,7 @@ func (c *Chef) CreateDatabag(databag string) error {
 		return err
 	}
 
-	responce, err := c.Post("data", nil, payload)
+	responce, err := c.Post("data", "application/json", nil, payload)
 	if err != nil {
 		return err
 	}
@@ -114,7 +114,7 @@ func (c *Chef) CreateDatabagItem(databag, item string, value zhash.Hash) error {
 		return err
 	}
 
-	responce, err := c.Post("data/"+databag, nil, payload)
+	responce, err := c.Post("data/"+databag, "application/json", nil, payload)
 	if err != nil {
 		return err
 	}
