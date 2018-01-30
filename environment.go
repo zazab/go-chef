@@ -14,7 +14,6 @@ func NewEnvironment(name, description string, cookbookVersions map[string]string
 	return Environment{
 		Name:             name,
 		Description:      description,
-		Attributes:       attributes,
 		CookbookVersions: cookbookVersions,
 		JsonClass:        "Chef::Environment",
 		ChefType:         "environment",
@@ -23,7 +22,6 @@ func NewEnvironment(name, description string, cookbookVersions map[string]string
 
 type Environment struct {
 	Name             string            `json:"name"`
-	Attributes       zhash.Hash        `json:"attributes"`
 	Description      string            `json:"description"`
 	CookbookVersions map[string]string `json:"cookbook_versions"`
 	JsonClass        string            `json:"json_class"`
