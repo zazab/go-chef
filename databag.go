@@ -96,6 +96,7 @@ func (c *Chef) CreateDatabag(databag string) error {
 	json.Unmarshal(body, &responceHash)
 	switch responce.StatusCode {
 	case 201:
+		c.log.Debugf("Databag %s created", databag)
 		return err
 	case 409:
 		return errors.New(fmt.Sprintf("Databag %s already exists", databag))
@@ -124,6 +125,8 @@ func (c *Chef) CreateDatabagItem(databag, item string, value zhash.Hash) error {
 	err = json.Unmarshal(body, &responceHash)
 	switch responce.StatusCode {
 	case 200:
+	case 201:
+		c.log.Debugf("Databag item %s/%s created", databag, item)
 		return err
 	case 409:
 		return errors.New(fmt.Sprintf("Databag item %s/%s already exists",
