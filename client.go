@@ -25,7 +25,7 @@ func (c *Chef) CreateClient(name string) (string, error) {
 		return "", err
 	}
 
-	responce, err := c.Post("clients", nil, payload)
+	responce, err := c.Post("clients", "application/json", nil, payload)
 	if err != nil {
 		return "", err
 	}
